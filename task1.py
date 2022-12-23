@@ -4,7 +4,7 @@ def truthCheck(formula):
     S = [disjunctsList]
     temporaryS = []
 
-    # Формируем S1
+    # Формуємо S1
     for i in range(len(S[0])):
         for j in range(i, len(S[0])):
             resolutionDisjunct = resolution(S[0][i], S[0][j])
@@ -14,7 +14,7 @@ def truthCheck(formula):
     S.append(temporaryS)
     if checkForEmptyDisjuncts(S[0]): return "правильне"
 
-    # Метод резолюций для последующих Sn
+    # Метод резолюції для наступних Sn
     sCounter = 0
     while True:
         temporaryS = []
@@ -59,12 +59,12 @@ def oppositeDisjunct(disjunct):
 # A V B, ¬A V C -> B V C
 def resolution(disjuncts1, disjuncts2):
     resolutionDisjunct = []
-    # находим А
+    # знаходимо А
     for i in range(len(disjuncts1)):
         for j in range(len(disjuncts2)):
             if disjuncts1[i] == oppositeDisjunct(disjuncts2[j]):
-                # Если В == "∅", то меняем его местами с С согласно правилу комутативности дизъюнкции,
-                # для удобства последующих вычислений
+                # Якщо В == "∅", то міняєм його місцями з С згідно правилу комунікативності дизюнкції,
+                # для зручності наступних обчислень
                 if disjuncts1[i^1] == "∅": resolutionDisjunct = [disjuncts2[j^1], disjuncts1[i^1]]
                 else: resolutionDisjunct = [disjuncts1[i^1], disjuncts2[j^1]]
     return resolutionDisjunct
